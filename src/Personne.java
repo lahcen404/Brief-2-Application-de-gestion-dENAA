@@ -1,8 +1,9 @@
 public  abstract class Personne {
-    int id ;
-    String nom;
-    String prenom;
-    String email;
+
+    private int id ;
+    private String nom;
+    private String prenom;
+    private String email;
 
 
     public Personne(int id, String nom, String prenom, String email){
@@ -41,4 +42,12 @@ public  abstract class Personne {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
+    public void addPersonne(int id, String nom, String prenom, String email){
+
+    }
+
+    public abstract void displayInfoApprenants();
+
+    public abstract void displayInfoFormateurs();
 }

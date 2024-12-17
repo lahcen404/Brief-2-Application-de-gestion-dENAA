@@ -35,4 +35,19 @@ ArrayList <Apprenant> apprenants;
     public void setApprenants(ArrayList<Apprenant> apprenants) {
         this.apprenants = apprenants;
     }
+
+    public void displayInfoApprenants(){
+
+
+        System.out.println("Name : "+getNom());
+        System.out.println("Apprenants : "+getApprenants());
+        System.out.println("Formateur : "+getFormateur());
+
+
+    }
+    @Override
+    public String toString() {
+        return "Classe: " + nom;
+    }
+
 }
