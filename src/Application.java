@@ -109,12 +109,66 @@ public class Application {
         }
     }
 
+    private void traiterChoixFormateur(int choix) {
+        switch (choix) {
+            case 1:
+
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 0:
+                break;
+            default:
+                System.out.println("Choix invalide.");
+        }
+    }
+
+    private void traiterChoixClasse(int choix) {
+        switch (choix) {
+            case 1:
+
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 0:
+                break;
+            default:
+                System.out.println("Choix invalide.");
+        }
+    }
+
 
 
     private void gererFormateurs() {
 
-        afficherMenuFormateur();
+        int choix;
+        do {
+            afficherMenuFormateur();
+            try {
+                choix = scanner.nextInt();
+                scanner.nextLine();
+                traiterChoixFormateur(choix);
+            } catch (InputMismatchException e) {
+                System.out.println("Erreur !!! entrer un nombre");
+                scanner.nextLine();
+                choix = -1;
+            }
+        } while (choix != 0);
+
     }
+
 
     private void afficherMenuFormateur() {
         System.out.println("\n--- Gestion des Formateurs ---");
@@ -129,9 +183,19 @@ public class Application {
 
     private void gererClasses() {
 
-
+        int choix;
+        do {
             afficherMenuClasse();
-
+            try {
+                choix = scanner.nextInt();
+                scanner.nextLine();
+                traiterChoixClasse(choix);
+            } catch (InputMismatchException e) {
+                System.out.println("Erreur !!! entrer un nombre");
+                scanner.nextLine();
+                choix = -1;
+            }
+        } while (choix != 0);
 
     }
 
@@ -147,7 +211,6 @@ public class Application {
         System.out.println("0. Retour au menu principal");
         System.out.print("Votre choix : ");
     }
-
 
 
 }

@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Classe {
-String nom;
-Formateur formateur;
-ArrayList <Apprenant> apprenants;
+    private String nom;
+    private Formateur formateur;
+    private ArrayList <Apprenant> apprenants;
     public Classe(String nom, Formateur formateur, ArrayList<Apprenant> apprenants){
         this.nom=nom;
         this.formateur= formateur;
