@@ -4,11 +4,18 @@ public class Classe {
 String nom;
 Formateur formateur;
 ArrayList <Apprenant> apprenants;
-    public Classe(){
+    public Classe(String nom, Formateur formateur, ArrayList<Apprenant> apprenants){
         this.nom=nom;
         this.formateur= formateur;
         this.apprenants=new ArrayList<>();
 }
+    public Classe(String nom, Formateur formateur){
+        this.nom=nom;
+        this.formateur= formateur;
+        this.apprenants=new ArrayList<>();
+    }
+
+
 
 
     public String getNom() {
@@ -36,7 +43,7 @@ ArrayList <Apprenant> apprenants;
         this.apprenants = apprenants;
     }
 
-    public void displayInfoApprenants(){
+    public void displayInfoClasses(){
 
 
         System.out.println("Name : "+getNom());
@@ -47,7 +54,10 @@ ArrayList <Apprenant> apprenants;
     }
     @Override
     public String toString() {
-        return "Classe: " + nom;
+        return  nom;
     }
 
+
+    public void ajouterApprenant(Apprenant newApprenant) {
+    }
 }

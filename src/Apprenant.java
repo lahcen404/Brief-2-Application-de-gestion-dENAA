@@ -8,7 +8,7 @@ public class Apprenant extends Personne {
    public Apprenant(int id,String nom,String prenom,String email,Classe classe,ArrayList<Double> notes){
         super(id,nom,prenom,email);
         this.classe=classe;
-        this.notes= notes;
+        this.notes= new ArrayList<>(notes);
 
    }
 
@@ -63,41 +63,7 @@ public class Apprenant extends Personne {
 //
 //    }
 
-    public static void addApprenant(ArrayList<Personne> personnes) {
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Add an Apprenant : \n");
-        System.out.println("-------------------------- \n");
-
-        System.out.println("Add ID : ");
-        int id = sc.nextInt();
-        sc.nextLine(); // Consume newline
-
-        System.out.println("Add first Name : ");
-        String nom = sc.nextLine();
-        System.out.println("Add second Name : ");
-        String prenom = sc.nextLine();
-
-        System.out.println("Add Email : ");
-        String email = sc.nextLine();
-
-        System.out.println("Add Classe Name : ");
-        String classeName = sc.nextLine();
-        // blocageee
-        Classe classe = new Classe();
-
-
-        System.out.println("Add Note : ");
-        ArrayList<Double> notes = new ArrayList<>();
-        notes.add(sc.nextDouble());
-
-        Apprenant apprenant = new Apprenant(id, nom, prenom, email, classe, notes);
-
-
-        personnes.add(apprenant);
-
-        System.out.println("Apprenant created successfullly \n");
-    }
 
 
     @Override
