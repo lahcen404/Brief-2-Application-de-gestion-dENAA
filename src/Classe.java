@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Classe {
     private String nom;
@@ -54,10 +56,12 @@ public class Classe {
     }
     @Override
     public String toString() {
-        return  nom;
+        return "Classe :"+ nom + "Formateur :" + formateur + "Apprenants :" + apprenants;
     }
 
 
-    public void ajouterApprenant(Apprenant newApprenant) {
+
     }
-}
+
+
+

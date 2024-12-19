@@ -34,20 +34,11 @@ public class Formateur extends Personne{
         this.classe = classe;
     }
 
-    @Override
-    public void displayInfoApprenants() {
 
-    }
-    @Override
-    public void displayInfoFormateurs(){
+@Override
+    public String toString(){
+        return super.toString() + " | specialite :" + specialite + " | salaire :" + salaire + " | classe :" + classe;
+}
 
-        System.out.println("Id : "+getId());
-        System.out.println("Name : "+getNom());
-        System.out.println("Prenom : "+getPrenom());
-        System.out.println("Email : "+getEmail());
-        System.out.println("Classe : "+getClasse());
-        System.out.println("Specialite : "+getSpecialite());
-        System.out.println("Salaire : "+getSalaire());
 
-    }
 }

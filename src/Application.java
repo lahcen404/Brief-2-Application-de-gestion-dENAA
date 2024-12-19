@@ -89,16 +89,21 @@ public class Application {
         System.out.print("Votre choix : ");
     }
 
+
+
+
     private void traiterChoixApprenant(int choix) {
         switch (choix) {
             case 1:
 
                 break;
             case 2:
+
                 break;
             case 3:
                 break;
             case 4:
+                
                 break;
             case 5:
                 break;
@@ -112,13 +117,16 @@ public class Application {
     private void traiterChoixFormateur(int choix) {
         switch (choix) {
             case 1:
-
+                ajouterFormateur();
                 break;
             case 2:
+                modifierFormateur();
                 break;
             case 3:
+                supprimerFormateur();
                 break;
             case 4:
+                afficherFormateurs();
                 break;
             case 5:
                 break;
@@ -128,6 +136,7 @@ public class Application {
                 System.out.println("Choix invalide.");
         }
     }
+
 
     private void traiterChoixClasse(int choix) {
         switch (choix) {
@@ -139,6 +148,7 @@ public class Application {
             case 3:
                 break;
             case 4:
+
                 break;
             case 5:
                 break;
@@ -170,6 +180,10 @@ public class Application {
     }
 
 
+
+
+
+
     private void afficherMenuFormateur() {
         System.out.println("\n--- Gestion des Formateurs ---");
         System.out.println("1. Ajouter un formateur");
@@ -180,6 +194,143 @@ public class Application {
         System.out.println("0. Retour au menu principal");
         System.out.print("Votre choix : ");
     }
+
+
+    private void ajouterFormateur() {
+        try {
+            System.out.println("Ajout d'un formateur:");
+            System.out.print("ID: ");
+            int id = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Nom: ");
+            String nom = scanner.nextLine();
+            System.out.print("Prénom: ");
+            String prenom = scanner.nextLine();
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+            System.out.print("Spécialité: ");
+            String specialite = scanner.nextLine();
+            System.out.print("Salaire: ");
+            double salaire = scanner.nextDouble();
+            scanner.nextLine();
+
+            Formateur newFormateur = new Formateur(id, nom, prenom, email, specialite, salaire, null);
+            formateurs.add(newFormateur);
+            System.out.println("Formateur ajouter avec succes.");
+
+        } catch (InputMismatchException e) {
+            System.out.println("Erreur  entrer des donnees valides");
+            scanner.nextLine();
+        }
+    }
+
+    private void afficherFormateurs() {
+        if (formateurs.isEmpty()) {
+            System.out.println("Aucun formateur enregistreer.");
+            return;
+        }
+
+        System.out.println("\n--- Liste des Formateurs ---");
+        for (Formateur formateur : formateurs) {
+            System.out.println(formateur);
+        }
+    }
+
+    private void supprimerFormateur() {
+        try {
+            System.out.print("Entrez ID du formateur pour supprimer : ");
+            int idSupprimer = scanner.nextInt();
+            scanner.nextLine();
+
+            Formateur formateurASupprimer = null;
+            for (Formateur formateur : formateurs) {
+                if (formateur.getId() == idSupprimer) {
+                    formateurASupprimer = formateur;
+                    break;
+                }
+            }
+
+            if (formateurASupprimer == null) {
+                System.out.println("Formateur non trouver ");
+            } else {
+                formateurs.remove(formateurASupprimer);
+                System.out.println("Formateur supprimeeer avec succes.");
+
+
+
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Erreur , entrer un ID valide (un nombre entier).");
+            scanner.nextLine();
+        }
+    }
+
+    private void modifierFormateur() {
+        try {
+            System.out.print("Entrez ID du formateur pour modifier : ");
+            int idAModifier = scanner.nextInt();
+            scanner.nextLine();
+
+            Formateur formateurAModifier = null;
+            for (Formateur formateur : formateurs) {
+                if (formateur.getId() == idAModifier) {
+                    formateurAModifier = formateur;
+                    break;
+                }
+            }
+
+            if (formateurAModifier == null) {
+                System.out.println("Formateur non trouver.");
+                return;
+            }
+
+            System.out.println("Entrez les nouvelles informations :");
+
+            System.out.print("Nom  : ");
+            String nom = scanner.nextLine();
+
+                formateurAModifier.setNom(nom);
+
+
+            System.out.print("Prenom  : ");
+            String prenom = scanner.nextLine();
+
+                formateurAModifier.setPrenom(prenom);
+
+
+            System.out.print("Email  : ");
+            String email = scanner.nextLine();
+
+                formateurAModifier.setEmail(email);
+
+
+            System.out.print("Specialiter  : ");
+            String specialite = scanner.nextLine();
+
+                formateurAModifier.setSpecialite(specialite);
+
+
+            System.out.print("Salaire  : ");
+            String salaireStr = scanner.nextLine();
+
+                try {
+                    double salaire = Double.parseDouble(salaireStr);
+                    formateurAModifier.setSalaire(salaire);
+                } catch (NumberFormatException e) {
+                    System.out.println("Erreur, entrer un salaire valide (un nombre)");
+                }
+
+
+            System.out.println("Formateur modifier avec succes");
+
+        } catch (InputMismatchException e) {
+            System.out.println("Erreur  entrer un ID valide (un nombre )");
+            scanner.nextLine();
+        }
+    }
+
+
 
     private void gererClasses() {
 
@@ -211,6 +362,8 @@ public class Application {
         System.out.println("0. Retour au menu principal");
         System.out.print("Votre choix : ");
     }
+
+
 
 
 }

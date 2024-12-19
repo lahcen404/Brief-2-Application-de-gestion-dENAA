@@ -26,7 +26,7 @@ public class Apprenant extends Personne {
        this.notes= notes;
    }
 
-   @Override
+
    public void displayInfoApprenants(){
 
        System.out.println("Id : "+getId());
@@ -38,36 +38,12 @@ public class Apprenant extends Personne {
 
    }
 
-//    public static void addApprenant(){
-//        Scanner sc=new Scanner(System.in);
-//        ArrayList<Personne> personnes = new ArrayList<>();
-//
-//        System.out.println("Add an Apprenant : \n");
-//        System.out.println("-------------------------- \n");
-//        System.out.println("Add ID : \n");
-//        int id = sc.nextInt();
-//        sc.nextLine();
-//        System.out.println("Add First Name : \n");
-//        String nom=sc.nextLine();
-//        System.out.println("Add Second Name : \n");
-//        String prenom=sc.nextLine();
-//        System.out.println("Add Email : \n");
-//        String email=sc.nextLine();
-//        System.out.println("Add Classe : \n");
-//        String classe=sc.nextLine();
-//        System.out.println("Add Note  : \n");
-//        double note=sc.nextDouble();
-//        Apprenant apprenant = new Apprenant(id,nom,prenom,email,classe,note);
-//        personnes.add(apprenant);
-//        System.out.println("Apprenant created Succesfully \n");
-//
-//    }
-
-
 
 
     @Override
-    public void displayInfoFormateurs() {
-
+    public String toString() {
+       return super.toString() + "Classe :" + classe.getNom() + "Notes :"+notes;
     }
+
+
 }

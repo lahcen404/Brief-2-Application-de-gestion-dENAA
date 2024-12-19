@@ -43,11 +43,13 @@ public  abstract class Personne {
         this.prenom = prenom;
     }
 
-    public void addPersonne(int id, String nom, String prenom, String email){
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Nom: " + nom + ", Prenom: " + prenom + ", Email: " + email;
+    }
+
 
     }
 
-    public abstract void displayInfoApprenants();
 
-    public abstract void displayInfoFormateurs();
-}
+
