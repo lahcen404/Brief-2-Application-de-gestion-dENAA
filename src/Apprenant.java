@@ -5,12 +5,18 @@ public class Apprenant extends Personne {
    private Classe classe ;
    ArrayList<Double> notes ;
 
-   public Apprenant(int id,String nom,String prenom,String email,Classe classe,ArrayList<Double> notes){
+   public Apprenant(int id,String nom,String prenom,String email,Classe classe){
         super(id,nom,prenom,email);
         this.classe=classe;
-        this.notes= new ArrayList<>(notes);
+        this.notes= new ArrayList<>();
 
    }
+
+    public Apprenant(int id, String nom, String prenom, String email) {
+        super(id, nom, prenom, email);
+        this.classe = null;
+        this.notes = new ArrayList<>();
+    }
 
     public Classe getClasse() {
         return classe;
@@ -26,24 +32,23 @@ public class Apprenant extends Personne {
        this.notes= notes;
    }
 
-
-   public void displayInfoApprenants(){
-
-       System.out.println("Id : "+getId());
-       System.out.println("Name : "+getNom());
-       System.out.println("Prenom : "+getPrenom());
-       System.out.println("Email : "+getEmail());
-       System.out.println("Classe : "+getClasse());
-       System.out.println("Note : "+getNotes());
-
-   }
+    public void ajouterNote(double note) {
+        this.notes.add(note); // Now this will work!
+    }
 
 
+
+
+//    @Override
+//    public String toString() {
+//       return super.toString() + "Classe :" + classe.getNom() + "Notes :"+notes;
+//    }
 
     @Override
     public String toString() {
-       return super.toString() + "Classe :" + classe.getNom() + "Notes :"+notes;
+        // Fix applied for null Classe handling
+        String classeNom = (classe != null) ? classe.getNom() : "Aucune classe";
+        return super.toString() + " | Classe: " + classeNom + " |Notes: " + notes;
     }
-
 
 }

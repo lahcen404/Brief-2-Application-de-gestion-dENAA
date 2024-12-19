@@ -95,15 +95,16 @@ public class Application {
     private void traiterChoixApprenant(int choix) {
         switch (choix) {
             case 1:
-
+                ajouterApprenant();
                 break;
             case 2:
-
+                modifierApprenant();
                 break;
             case 3:
+                supprimerApprenant();
                 break;
             case 4:
-                
+                afficherApprenants();
                 break;
             case 5:
                 break;
@@ -112,6 +113,164 @@ public class Application {
             default:
                 System.out.println("Choix invalide.");
         }
+    }
+
+
+    private void ajouterApprenant() {
+        try {
+            System.out.print("ID: ");
+            int id = scanner.nextInt();
+            scanner.nextLine();
+            if (apprenantExiste(id)) {
+                System.out.println("ID deja utiliser.");
+                return;
+            }
+            System.out.print("Nom: ");
+            String nom = scanner.nextLine();
+            System.out.print("Prenom: ");
+            String prenom = scanner.nextLine();
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+
+            Apprenant newApprenant = new Apprenant(id, nom, prenom, email);
+
+            System.out.println("Ajouter des notes pour cet apprenant (entrer 'fin' pour terminer) :");
+            String inputNote;
+            while (true) {
+                System.out.print("Note : ");
+                inputNote = scanner.nextLine();
+                if (inputNote.equalsIgnoreCase("fin")) {
+                    break;
+                }
+                try {
+                    double note = Double.parseDouble(inputNote);
+                    newApprenant.ajouterNote(note);
+                } catch (NumberFormatException e) {
+                    System.out.println("Erreur , entrer un nombre valide ou 'fin' our terminer.");
+                }
+            }
+
+            apprenants.add(newApprenant);
+            System.out.println("Apprenant ajouter avec succees.");
+
+        } catch (InputMismatchException e) {
+            System.out.println("Erreur , entrer des donnees valides.");
+            scanner.nextLine();
+        }
+    }
+
+    private boolean apprenantExiste(int id) {
+        for (Apprenant apprenant : apprenants) {
+            if (apprenant.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void supprimerApprenant() {
+        try {
+            System.out.print("Entrez ID du apprenant pour supprimer : ");
+            int idSupprimer = scanner.nextInt();
+            scanner.nextLine();
+            Apprenant apprenantASupprimer = null;
+            for (Apprenant apprenant : apprenants) {
+                if (apprenant.getId() == idSupprimer) {
+                    apprenantASupprimer = apprenant;
+                    break;
+                }
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Erreur , entrer un ID valide (un nombre entier).");
+            scanner.nextLine();
+        }
+    }
+
+    private void modifierApprenant() {
+
+            afficherApprenants();
+            System.out.println("\n");
+        try {
+
+            System.out.print("Entrez ID du Apprenant pour modifier : ");
+            int idAModifier = scanner.nextInt();
+            scanner.nextLine();
+
+            Apprenant apprenantModifier = null;
+            for (Apprenant apprenant : apprenants) {
+                if (apprenant.getId() == idAModifier) {
+                    apprenantModifier = apprenant;
+                    break;
+                }
+            }
+
+            if (apprenantModifier == null) {
+                System.out.println("apprenant non trouver.");
+                return;
+            }
+
+            System.out.println("Entrez les nouvelles informations :");
+
+            System.out.print("Nom  : ");
+            String nom = scanner.nextLine();
+
+            apprenantModifier.setNom(nom);
+
+
+            System.out.print("Prenom  : ");
+            String prenom = scanner.nextLine();
+
+            apprenantModifier.setPrenom(prenom);
+
+
+            System.out.print("Email  : ");
+            String email = scanner.nextLine();
+
+            apprenantModifier.setEmail(email);
+
+
+            System.out.print("Classe  : ");
+            String classeNom = scanner.nextLine();
+            Classe classe = new Classe(classeNom, null);
+
+            if (classe == null) {
+
+                System.out.println("Classe Null");
+            } else {
+                System.out.println("Classe selectionnee : " + classe.getNom());
+            }
+            apprenantModifier.setClasse(classe);
+
+            System.out.println("Ajouter des notes pour cet apprenant (tapez 'fin' pour terminer) :");
+            apprenantModifier.setNotes(new ArrayList<>());
+
+            while (true) {
+                String inputNote = scanner.nextLine();
+
+                if (inputNote.equalsIgnoreCase("fin")) {
+                    break;
+                }
+
+                try {
+                    double note = Double.parseDouble(inputNote);
+                    apprenantModifier.ajouterNote(note);
+                } catch (NumberFormatException e) {
+                    System.out.println("Entree , entrer un nombre ou 'fin' pour terminer");
+                }
+            }
+
+            System.out.println("Notes ajoutees avec succees !");
+
+
+
+            System.out.println("Apprenant modifier avec succes");
+
+        } catch (InputMismatchException e) {
+            System.out.println("Erreur  entrer un ID valide (un nombre )");
+            scanner.nextLine();
+        }
+
+
     }
 
     private void traiterChoixFormateur(int choix) {
@@ -222,6 +381,17 @@ public class Application {
         } catch (InputMismatchException e) {
             System.out.println("Erreur  entrer des donnees valides");
             scanner.nextLine();
+        }
+    }
+
+    private void afficherApprenants() {
+        if (apprenants.isEmpty()) {
+            System.out.println("Aucun apprenant enregistreer.");
+            return;
+        }
+        System.out.println("\n--- Liste des Apprenants ---");
+        for (Apprenant apprenant : apprenants) {
+            System.out.println(apprenant);
         }
     }
 
