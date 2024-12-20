@@ -13,6 +13,9 @@ public  abstract class Personne {
         this.email=email;
     }
 
+    public Personne() {
+
+    }
 
 
     public int getId() {

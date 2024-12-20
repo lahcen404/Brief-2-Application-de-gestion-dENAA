@@ -5,17 +5,28 @@ import java.util.Scanner;
 public class Classe {
     private String nom;
     private Formateur formateur;
+
+    Scanner scanner = new Scanner(System.in);
     private ArrayList <Apprenant> apprenants;
+
+    ArrayList<Classe> classes = new ArrayList<>();
     public Classe(String nom, Formateur formateur, ArrayList<Apprenant> apprenants){
         this.nom=nom;
         this.formateur= formateur;
         this.apprenants=new ArrayList<>();
+
+
 }
+public Classe() {
+
+    }
     public Classe(String nom, Formateur formateur){
         this.nom=nom;
         this.formateur= formateur;
         this.apprenants=new ArrayList<>();
     }
+
+
 
 
 
