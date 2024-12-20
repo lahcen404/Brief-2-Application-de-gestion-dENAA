@@ -158,15 +158,16 @@ public class Application {
                 cl.ajouterClasse();
                 break;
             case 2:
-                cl.afficherClasses();
+                //modify
                 break;
             case 3:
                 cl.supprimerClasse();
                 break;
             case 4:
-
+                cl.afficherClasses();
                 break;
             case 5:
+                cl.RechercheClasse();
                 break;
             case 0:
                 break;
@@ -245,8 +246,8 @@ public class Application {
         System.out.println("1. Creer une classe");
         System.out.println("2. Modifier une classe");
         System.out.println("3. Supprimer une classe");
-        System.out.println("4. Afficher les détails d'une classe");
-        System.out.println("5. Afficher toutes les classes");
+        System.out.println("4. Afficher toutes les classes");
+        System.out.println("5. Recherche classe par Name ");
         System.out.println("6. Ajouter un apprenant à une classe");
         System.out.println("7. Supprimer un apprenant d'une classe");
         System.out.println("0. Retour au menu principal");
