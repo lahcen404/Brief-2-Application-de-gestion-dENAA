@@ -8,15 +8,16 @@ public class Apprenant extends Personne {
 
     private Classe classe ;
    ArrayList<Double> notes ;
-    private  ArrayList<Apprenant> apprenants = new ArrayList<>();
+    public static ArrayList<Apprenant> allApprenants = new ArrayList<>();  // Global list of all students
+
     Scanner scanner = new Scanner(System.in);
 
-   public Apprenant(int id,String nom,String prenom,String email,Classe classe){
-        super(id,nom,prenom,email);
-        this.classe=classe;
-        this.notes= new ArrayList<>();
-
-   }
+  // public Apprenant(int id,String nom,String prenom,String email,Classe classe){
+//        super(id,nom,prenom,email);
+//        this.classe=classe;
+//        this.notes= new ArrayList<>();
+//
+//   }
 
 
     public Apprenant(int id, String nom, String prenom, String email) {
@@ -82,7 +83,7 @@ public class Apprenant extends Personne {
                 }
             }
 
-            apprenants.add(newApprenant);
+            allApprenants.add(newApprenant);
             System.out.println("Apprenant ajouter avec succees.");
 
         } catch (InputMismatchException e) {
@@ -91,8 +92,8 @@ public class Apprenant extends Personne {
         }
     }
 
-    private boolean apprenantExiste(int id) {
-        for (Apprenant apprenant : apprenants) {
+     boolean apprenantExiste(int id) {
+        for (Apprenant apprenant : allApprenants) {
             if (apprenant.getId() == id) {
                 return true;
             }
@@ -106,7 +107,7 @@ public class Apprenant extends Personne {
             int idSupprimer = scanner.nextInt();
             scanner.nextLine();
             Apprenant apprenantASupprimer = null;
-            for (Apprenant apprenant : apprenants) {
+            for (Apprenant apprenant : allApprenants) {
                 if (apprenant.getId() == idSupprimer) {
                     apprenantASupprimer = apprenant;
                     break;
@@ -115,7 +116,7 @@ public class Apprenant extends Personne {
                 if (apprenantASupprimer == null) {
                     System.out.println("Apprenant non trouver ");
                 } else {
-                    apprenants.remove(apprenantASupprimer);
+                    allApprenants.remove(apprenantASupprimer);
                     System.out.println("Apprenant supprimeeer avec succes.");
 
 
@@ -130,12 +131,12 @@ public class Apprenant extends Personne {
 
 
     void afficherApprenants() {
-        if (apprenants.isEmpty()) {
+        if (allApprenants.isEmpty()) {
             System.out.println("Aucun apprenant enregistreer.");
             return;
         }
         System.out.println("\n--- Liste des Apprenants ---");
-        for (Apprenant apprenant : apprenants) {
+        for (Apprenant apprenant : allApprenants) {
             System.out.println(apprenant);
         }
     }
@@ -153,7 +154,7 @@ public class Apprenant extends Personne {
             scanner.nextLine();
 
             Apprenant apprenantModifier = null;
-            for (Apprenant apprenant : apprenants) {
+            for (Apprenant apprenant : allApprenants) {
                 if (apprenant.getId() == idAModifier) {
                     apprenantModifier = apprenant;
                     break;
@@ -185,17 +186,6 @@ public class Apprenant extends Personne {
             apprenantModifier.setEmail(email);
 
 
-            System.out.print("Classe  : ");
-            String classeNom = scanner.nextLine();
-            Classe classe = new Classe(classeNom, null);
-
-            if (classe == null) {
-
-                System.out.println("Classe Null");
-            } else {
-                System.out.println("Classe selectionnee : " + classe.getNom());
-            }
-            apprenantModifier.setClasse(classe);
 
             System.out.println("Ajouter des notes pour cet apprenant (tapez 'fin' pour terminer) :");
             apprenantModifier.setNotes(new ArrayList<>());
@@ -234,7 +224,7 @@ public class Apprenant extends Personne {
         System.out.println("Entrer ID pour Recherche :");
         int IdRecherche = scanner.nextInt();
 
-        for(Apprenant apprenant : apprenants){
+        for(Apprenant apprenant : allApprenants){
             if(apprenant.getId() == IdRecherche){
                 System.out.println(apprenant);
                 return;
@@ -244,8 +234,6 @@ public class Apprenant extends Personne {
             }
         }
     }
-
-
 
 
     @Override

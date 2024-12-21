@@ -64,10 +64,13 @@ public class Formateur extends Personne{
             String email = scanner.nextLine();
             System.out.print("Spécialité: ");
             String specialite = scanner.nextLine();
-            System.out.print("Salaire: ");
-            double salaire = scanner.nextDouble();
-            scanner.nextLine();
-
+            try {
+                System.out.print("Salaire: ");
+                double salaire = scanner.nextDouble();
+                scanner.nextLine();
+            }catch (NumberFormatException e){
+                System.out.println("Erreur , entrer un salaire valide (un nombre)");
+            }
             Formateur newFormateur = new Formateur(id, nom, prenom, email, specialite, salaire, null);
             formateurs.add(newFormateur);
             System.out.println("Formateur ajouter avec succes.");

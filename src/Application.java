@@ -111,6 +111,7 @@ public class Application {
                 ap.afficherApprenants();
                 break;
             case 5:
+                //cl.associerApprenant();
                 break;
             case 6:
                 ap.RechercheApprenant();
@@ -140,6 +141,7 @@ public class Application {
                 form.afficherFormateurs();
                 break;
             case 5:
+
                 break;
             case 6:
                 form.RechercheFormateurs();
@@ -158,7 +160,7 @@ public class Application {
                 cl.ajouterClasse();
                 break;
             case 2:
-                //modify
+                cl.modifierClasse();
                 break;
             case 3:
                 cl.supprimerClasse();
@@ -168,6 +170,10 @@ public class Application {
                 break;
             case 5:
                 cl.RechercheClasse();
+                break;
+
+            case 6:
+
                 break;
             case 0:
                 break;
@@ -216,13 +222,6 @@ public class Application {
 
 
 
-
-
-
-
-
-
-
     private void gererClasses() {
 
         int choix;
@@ -247,7 +246,7 @@ public class Application {
         System.out.println("2. Modifier une classe");
         System.out.println("3. Supprimer une classe");
         System.out.println("4. Afficher toutes les classes");
-        System.out.println("5. Recherche classe par Name ");
+        System.out.println("5. Recherche classe  ");
         System.out.println("6. Ajouter un apprenant à une classe");
         System.out.println("7. Supprimer un apprenant d'une classe");
         System.out.println("0. Retour au menu principal");
@@ -255,12 +254,6 @@ public class Application {
     }
 
 
-    public void ajouterClasse(){
-
-
-
-
-    }
 
 
 }
