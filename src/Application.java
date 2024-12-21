@@ -111,7 +111,7 @@ public class Application {
                 ap.afficherApprenants();
                 break;
             case 5:
-                //cl.associerApprenant();
+                cl.associerApprenant();
                 break;
             case 6:
                 ap.RechercheApprenant();

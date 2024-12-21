@@ -144,30 +144,67 @@ public class Classe {
     }
 
 
-//    public void associerApprenant() {
-//        System.out.print("Entrez l'ID de l'apprenant à associer à la classe: ");
-//        int apprenantId = lireChoix();
-//        scanner.nextLine();
-//
-//
-//        Apprenant apprenant = findApprenantById(apprenantId);
-//        if (apprenant != null) {
-//            ajouterApprenant(apprenant);
-//            System.out.println("Apprenant associé à la classe avec succès !");
-//        } else {
-//            System.out.println("Apprenant non trouvé.");
-//        }
-//    }
+    public void associerApprenant() {
+        // Check if there are any classes
+        if (classes.isEmpty()) {
+            System.out.println("Aucune classe enregistrée.");
+            return;
+        }
 
+        // Display available classes
+        System.out.println("\n--- Liste des Classes ---");
+        afficherClasses();
+        System.out.print("Entrez l'ID de la classe : ");
+        int classeId = lireChoix();
 
-//    private Apprenant findApprenantById(int id) {
-//        for (Apprenant apprenant : Apprenant.allApprenants) { // Global search
-//            if (apprenant.getId() == id) {
-//                return apprenant;
-//            }
-//        }
-//        return null;
-//    }
+        // Find the class by ID
+        Classe classeChoisie = trouverClasseParId(classeId);
+        if (classeChoisie == null) {
+            System.out.println("Classe non trouvée.");
+            return;
+        }
+
+        // Check if there are any students (apprenants)
+        if (Apprenant.allApprenants.isEmpty()) {
+            System.out.println("Aucun apprenant enregistré.");
+            return;
+        }
+
+        // Display available students
+        System.out.println("\n--- Liste des Apprenants ---");
+        for (Apprenant apprenant : Apprenant.allApprenants) {
+            System.out.println("ID: " + apprenant.getId() + " | Nom: " + apprenant.getNom());
+        }
+
+        System.out.print("Entrez l'ID de l'apprenant : ");
+        int apprenantId = lireChoix();
+
+        // Find the apprenant by ID
+        Apprenant apprenantChoisi = findApprenantById(apprenantId);
+        if (apprenantChoisi == null) {
+            System.out.println("Apprenant non trouvé.");
+            return;
+        }
+
+        // Check if the apprenant is already associated with the class
+        if (classeChoisie.apprenants.contains(apprenantChoisi)) {
+            System.out.println("Cet apprenant est déjà associé à cette classe.");
+            return;
+        }
+
+        // Associate apprenant with the class
+        classeChoisie.apprenants.add(apprenantChoisi);
+        System.out.println("Apprenant associé à la classe avec succès !");
+    }
+
+    private Apprenant findApprenantById(int id) {
+        for (Apprenant apprenant : Apprenant.allApprenants) {
+            if (apprenant.getId() == id) {
+                return apprenant;
+            }
+        }
+        return null;
+    }
 
     public void RechercheClasse() {
         System.out.println("Entrer ID pour Recherche :");
